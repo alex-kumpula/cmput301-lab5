@@ -9,6 +9,8 @@
 
 List any resources used here, or simply put `N/A` if not applicable.
 
+- Android Studio .gitignore: https://gist.github.com/iainconnor/8605514
+
 ## Verbal Collaboration
 
 | Student Name | CCID     |
