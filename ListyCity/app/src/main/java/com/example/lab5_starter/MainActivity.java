@@ -89,18 +89,16 @@ public class MainActivity extends AppCompatActivity implements CityDialogFragmen
 
     @Override
     public void updateCity(City city, String name, String province) {
-
-
-        // Updating the database using delete + addition
+        // Delete the old city from the database
         DocumentReference cityDocRef = this.citiesRef.document(city.getName());
         cityDocRef.delete();
 
-        // Update city
+        // Update the city
         city.setName(name);
         city.setProvince(province);
         cityArrayAdapter.notifyDataSetChanged();
 
-        // Create new city
+        // Add the updated city to the database
         this.citiesRef
                 .document(city.getName())
                 .set(city)
@@ -116,6 +114,16 @@ public class MainActivity extends AppCompatActivity implements CityDialogFragmen
                         Log.e("Firestore", "DocumentSnapshot failed to write!");
                     }
                 });
+    }
+
+    @Override
+    public void deleteCity(City city){
+        cityArrayList.remove(city);
+        cityArrayAdapter.notifyDataSetChanged();
+
+        this.citiesRef
+                .document(city.getName())
+                .delete();
     }
 
     @Override
